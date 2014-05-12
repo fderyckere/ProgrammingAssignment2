@@ -1,13 +1,12 @@
-## Put comments here that give an overall description of what your
-## functions do
+## This function creates a number of functions for a matrix.
+## These functions are used to:
+## - initiate (or set) the matrix
+## - retrieve (or get) the matrix
+## - set its inverse in cache
+## - and obtain the inverse from the cache
+## Note: it is assumed that the matrix supplied is always invertible
+## See example below.
 
-## Write a short comment describing this function
-# This function creates a number of functions for a matrix
-# The functions:
-# - initiate the matrix
-# - get the matrix
-# - set its inverse in cache
-# - and obtain the inverse from the cache
 makeCacheMatrix <- function(x = matrix()) {
     m <- NULL
     set <- function(y) {
@@ -22,9 +21,10 @@ makeCacheMatrix <- function(x = matrix()) {
          getSolve = getSolve)
 }
 
-## Write a short comment describing this function
-# The first time this function is called, it calculates the inverse of the matrix and puts the result into cache
-# The following times this function is called, it returns the inverted matrix from cache
+## The first time this function is called, it calculates the inverse of the matrix and puts the result into cache.
+## The following times this function is called, it returns the inverted matrix from cache.
+## See example below.
+
 cacheSolve <- function(x, ...) {
     ## Return a matrix that is the inverse of 'x'
     m <- x$getSolve()
@@ -48,3 +48,4 @@ cacheSolve <- function(x, ...) {
 # b1 <- makeCacheMatrix(b)
 # system.time(cacheSolve(b1))   # will initiate the cache
 # system.time(cacheSolve(b1))   # will read the cache
+# (b1$get() %*% cacheSolve(b1))[1:10,1:10] # check results
